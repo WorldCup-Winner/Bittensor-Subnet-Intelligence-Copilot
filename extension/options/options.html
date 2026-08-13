@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TAO Scout Settings</title>
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <main class="wrap">
+      <header>
+        <h1>TAO Scout</h1>
+        <p>Configure data + AI providers for live subnet intelligence.</p>
+      </header>
+
+      <form id="settingsForm" class="card">
+        <label>
+          <span>Taostats API key</span>
+          <input id="taostatsApiKey" type="password" autocomplete="off" placeholder="From taostats.io/pro" />
+          <small>Used for live subnet / pool metrics. Leave empty to use demo data.</small>
+        </label>
+
+        <label>
+          <span>OpenAI API key</span>
+          <input id="openaiApiKey" type="password" autocomplete="off" placeholder="sk-..." />
+          <small>Optional. Without it, TAO Scout uses a local rule-based summary.</small>
+        </label>
+
+        <label class="check">
+          <input id="preferDemo" type="checkbox" />
+          <span>Force demo mode (ignore Taostats key)</span>
+        </label>
+
+        <div class="row">
+          <button type="submit" class="btn">Save</button>
+          <p id="saveMsg" class="msg" hidden>Saved.</p>
+        </div>
+      </form>
+
+      <section class="card help">
+        <h2>MVP Launch (v0.3)</h2>
+        <ul>
+          <li>Detect + analyze + 6 dimension scores</li>
+          <li>7D/30D trends + significant changes</li>
+          <li>AI summary, strengths & weaknesses</li>
+          <li>Compare 2–5 subnets + full report + home</li>
+        </ul>
+        <p>Next (V1): alerts, richer charts, explain-a-score. Payments still deferred.</p>
+      </section>
+    </main>
+    <script type="module" src="options.js"></script>
+  </body>
+</html>

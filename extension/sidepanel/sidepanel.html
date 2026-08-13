@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TAO Scout</title>
+    <link rel="stylesheet" href="sidepanel.css" />
+  </head>
+  <body>
+    <div class="bg" aria-hidden="true"></div>
+    <main class="app">
+      <header class="brand">
+        <div class="brand__mark" aria-hidden="true">◈</div>
+        <div>
+          <p class="brand__name">TAO Scout</p>
+          <p class="brand__tag">Subnet Intelligence Copilot</p>
+        </div>
+        <button id="settingsBtn" class="icon-btn" title="Settings" aria-label="Open settings">⚙</button>
+      </header>
+
+      <nav class="tabs" aria-label="Primary">
+        <button type="button" class="tab is-active" data-view="home">Home</button>
+        <button type="button" class="tab" data-view="analyze">Analyze</button>
+        <button type="button" class="tab" data-view="compare">Compare</button>
+        <button type="button" class="tab" data-view="report">Report</button>
+      </nav>
+
+      <section id="status" class="status" hidden></section>
+
+      <!-- HOME -->
+      <section id="view-home" class="view">
+        <div class="panel">
+          <div class="section-head">
+            <h2>Top Opportunities</h2>
+            <button id="refreshHomeBtn" class="linkish" type="button">Refresh</button>
+          </div>
+          <ol id="homeOpportunities" class="rank-list"></ol>
+        </div>
+        <div class="panel">
+          <h2>Biggest Momentum</h2>
+          <ul id="homeMomentum" class="plain-list"></ul>
+        </div>
+        <div class="panel">
+          <h2>Risk Alerts</h2>
+          <ul id="homeRisks" class="plain-list"></ul>
+        </div>
+        <div class="panel">
+          <h2>Your Watchlist</h2>
+          <ul id="homeWatchlist" class="plain-list"></ul>
+        </div>
+        <button id="exploreAnalyzeBtn" class="btn btn--primary btn--block">Explore / Analyze</button>
+      </section>
+
+      <!-- ANALYZE -->
+      <section id="view-analyze" class="view" hidden>
+        <div class="panel">
+          <label class="field">
+            <span>Subnet</span>
+            <div class="row">
+              <input id="netuidInput" type="number" min="0" max="1023" placeholder="e.g. 34" />
+              <button id="analyzeBtn" class="btn btn--primary">Analyze</button>
+            </div>
+          </label>
+          <p id="detectHint" class="hint">Open a subnet page or enter a netuid.</p>
+        </div>
+
+        <div id="quickReport" class="panel" hidden>
+          <div class="report__head">
+            <div>
+              <h1 id="subnetTitle">SN—</h1>
+              <p id="subnetName" class="muted"></p>
+            </div>
+            <div class="score">
+              <p class="score__label">Overall</p>
+              <p id="overallScore" class="score__value">—</p>
+              <p id="healthBadge" class="badge">—</p>
+            </div>
+          </div>
+          <div class="chips" id="chips"></div>
+          <div class="dims" id="dims"></div>
+
+          <article class="block">
+            <h2>AI Summary</h2>
+            <p id="summaryText" class="summary"></p>
+            <p id="summaryMeta" class="meta"></p>
+          </article>
+
+          <article class="block">
+            <h2>Strengths & Weaknesses</h2>
+            <div class="two-col">
+              <ul id="strengthsList" class="sw-list"></ul>
+              <ul id="weaknessesList" class="sw-list sw-list--weak"></ul>
+            </div>
+          </article>
+
+          <article class="block">
+            <h2>What Changed?</h2>
+            <div class="trend-tabs">
+              <button type="button" class="chip-btn is-active" data-window="7">7D</button>
+              <button type="button" class="chip-btn" data-window="30">30D</button>
+            </div>
+            <ul id="changesList" class="changes"></ul>
+            <ul id="significantList" class="significant"></ul>
+            <div class="trends" id="trends"></div>
+          </article>
+
+          <article class="block">
+            <h2>Verdict</h2>
+            <p id="verdictText" class="verdict"></p>
+            <div class="actions">
+              <button id="openReportBtn" class="btn btn--secondary">Full Report</button>
+              <button id="addCompareBtn" class="btn btn--ghost">Add to Compare</button>
+              <button id="watchBtn" class="btn btn--ghost">Watch</button>
+              <button id="rerunBtn" class="btn btn--ghost">Refresh</button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- COMPARE -->
+      <section id="view-compare" class="view" hidden>
+        <div class="panel">
+          <h2>Compare 2–5 subnets</h2>
+          <div class="row">
+            <input id="compareInput" type="number" min="0" max="1023" placeholder="Add netuid" />
+            <button id="compareAddBtn" class="btn btn--primary">Add</button>
+          </div>
+          <div id="compareChips" class="compare-chips"></div>
+          <div class="actions" style="margin-top: 10px">
+            <button id="compareRunBtn" class="btn btn--secondary">Compare scores</button>
+            <button id="compareClearBtn" class="btn btn--ghost">Clear</button>
+          </div>
+        </div>
+        <div id="compareResult" class="panel" hidden>
+          <div class="table-wrap">
+            <table id="compareTable" class="matrix"></table>
+          </div>
+          <article class="block">
+            <h2>Which is stronger?</h2>
+            <p id="compareStrongest" class="verdict"></p>
+            <p id="compareAi" class="summary"></p>
+            <p id="compareAiMeta" class="meta"></p>
+          </article>
+        </div>
+      </section>
+
+      <!-- FULL REPORT -->
+      <section id="view-report" class="view" hidden>
+        <div id="fullReport" class="panel">
+          <p class="hint">Analyze a subnet first to open the full report.</p>
+        </div>
+      </section>
+
+      <footer class="foot">
+        <p id="modeText" class="muted">MVP Launch · payments deferred</p>
+      </footer>
+    </main>
+    <script type="module" src="sidepanel.js"></script>
+  </body>
+</html>
